@@ -1,0 +1,215 @@
+CREATE TABLE "Mentor_Mentee" (
+  "Mentee_id" int,
+  "Mentor_id " int
+);
+
+CREATE INDEX "Primary key , Foreign key " ON  "Mentor_Mentee" ("Mentee_id", "Mentor_id ");
+
+CREATE TABLE "Student" (
+  "Student_id_number" Varchar2(13),
+  "Contact_id " int,
+  "Student_name" Varchar2(50),
+  "Student_Surname" Varchar2(50),
+  "Student_address " Varchar2(50),
+  "Student_date_of_birth " datetime,
+  "Student_year_enroll " int,
+  "Course_id" int
+);
+
+CREATE INDEX "primary key" ON  "Student" ("Student_id_number");
+
+CREATE INDEX "Foreign key" ON  "Student" ("Contact_id ", "Course_id");
+
+CREATE INDEX "not null" ON  "Student" ("Student_name", "Student_Surname", "Student_address ", "Student_year_enroll ");
+
+CREATE INDEX "optional " ON  "Student" ("Student_date_of_birth ");
+
+CREATE TABLE "Lecture " (
+  "Lecture_id_number  " varchar2(13),
+  "Lecture_name " varchar2(50),
+  "Lecture_surname " varchar2(50),
+  "Spesilaze_in_Subject_id " int,
+  "Contact_id" int
+);
+
+CREATE INDEX "Primary key" ON  "Lecture " ("Lecture_id_number  ");
+
+CREATE INDEX "not null" ON  "Lecture " ("Lecture_name ", "Lecture_surname ", "Contact_id");
+
+CREATE INDEX "Forgein key" ON  "Lecture " ("Spesilaze_in_Subject_id ");
+
+CREATE TABLE "Class  " (
+  "Class_id  " int,
+  "Class_course_id" int,
+  "Class_size" int,
+  "Class_capacity " int,
+  "Class_condition  " varchar2(10),
+  "Class_name" varchar2(10)
+);
+
+CREATE INDEX "Primary key" ON  "Class  " ("Class_id  ");
+
+CREATE INDEX "Foreign key" ON  "Class  " ("Class_course_id");
+
+CREATE INDEX "not null" ON  "Class  " ("Class_size", "Class_capacity ", "Class_condition  ", "Class_name");
+
+CREATE TABLE "Mentor " (
+  "metor_id " int,
+  " Student_id " varchar2(13),
+  " Subject_id " int,
+  "Class_id" int,
+  "Contact_id " int
+);
+
+CREATE INDEX "Primary key" ON  "Mentor " ("metor_id ");
+
+CREATE INDEX " Foreign key " ON  "Mentor " (" Student_id ", " Subject_id ");
+
+CREATE INDEX "Foreign key " ON  "Mentor " ("Class_id", "Contact_id ");
+
+CREATE TABLE "Test " (
+  "Test_set_by_Lecture_id_number " Varchar2(13),
+  "Subject_id " int,
+  "Test_moderated_by (Lecture_id_number(fk)) " Varchar2(13),
+  "Test_date " DateTime,
+  "Test_duration(hours)" int,
+  "Test_Type " Varchar2(10)
+);
+
+CREATE INDEX " Primary key , Foreign key " ON  "Test " ("Test_set_by_Lecture_id_number ");
+
+CREATE INDEX "Primary key , Foreign key " ON  "Test " ("Subject_id ", "Test_moderated_by (Lecture_id_number(fk)) ");
+
+CREATE INDEX "not null" ON  "Test " ("Test_date ", "Test_duration(hours)", "Test_Type ");
+
+CREATE TABLE "Class_course" (
+  "Course_id  " int,
+  "Class_id  " int
+);
+
+CREATE INDEX "Primary key , Foreign key " ON  "Class_course" ("Course_id  ", "Class_id  ");
+
+CREATE TABLE "Hostel  " (
+  "Hostel_id " int ,
+  "Hostel_name " varchar2(100),
+  "Hostel_location " varchar2(100),
+  "Hostel_condition " varchar2(10),
+  "Fiinace_id" int
+);
+
+CREATE INDEX "Primary key" ON  "Hostel  " ("Hostel_id ");
+
+CREATE INDEX "not null" ON  "Hostel  " ("Hostel_name ", "Hostel_condition ");
+
+CREATE INDEX "Not null" ON  "Hostel  " ("Hostel_location ");
+
+CREATE INDEX "Foreign key" ON  "Hostel  " ("Fiinace_id");
+
+CREATE TABLE "Course " (
+  "Course_id  " int,
+  "Course_duration (years)" int,
+  "Course_Name" varchar2(20),
+  "Course_credits " int,
+  "Finace_id" int
+);
+
+CREATE INDEX "primary key" ON  "Course " ("Course_id  ");
+
+CREATE INDEX "not null" ON  "Course " ("Course_duration (years)", "Course_Name", "Course_credits ");
+
+CREATE INDEX "Foreign key" ON  "Course " ("Finace_id");
+
+CREATE TABLE "Course Finance " (
+  "Finace_id" int,
+  "year_fee" money,
+  "Enrollment_fee " money,
+  "Payment_option " varchar2(40)
+);
+
+CREATE INDEX "Primary key " ON  "Course Finance " ("Finace_id");
+
+CREATE INDEX "not null" ON  "Course Finance " ("year_fee", "Enrollment_fee ", "Payment_option ");
+
+CREATE TABLE "Assignment " (
+  "Assigment_id  " int,
+  "Subject_id " int,
+  "Assignment_Date_given" Datetime,
+  "Assigment_due_date " Datetime,
+  "Assignment_Type " Datetime
+);
+
+CREATE INDEX "Primary key" ON  "Assignment " ("Assigment_id  ");
+
+CREATE INDEX "Foreign key" ON  "Assignment " ("Subject_id ");
+
+CREATE INDEX "not null" ON  "Assignment " ("Assignment_Date_given", "Assigment_due_date ", "Assignment_Type ");
+
+CREATE TABLE "  Session  " (
+  "Session_id " int,
+  "Session_start_time " time,
+  "Session_end_time " time
+);
+
+CREATE INDEX "Primary key" ON  "  Session  " ("Session_id ");
+
+CREATE INDEX "not null" ON  "  Session  " ("Session_start_time ", "Session_end_time ");
+
+CREATE TABLE "Subject " (
+  "Subject_id  " int,
+  "Session_id " int,
+  "Subject_duration " int,
+  "Subject_Credits" int,
+  "Subject_Type " varchar2(10)
+);
+
+CREATE INDEX "primary key" ON  "Subject " ("Subject_id  ");
+
+CREATE INDEX "Foreign key" ON  "Subject " ("Session_id ");
+
+CREATE INDEX "not null" ON  "Subject " ("Subject_duration ", "Subject_Credits", "Subject_Type ");
+
+CREATE TABLE "Contact_info " (
+  "Contact_id  " int ,
+  "Contact_email " Varchar2(100),
+  "Contact_phone_number " Varchar2(10),
+  "Contact_secondary_phonenumber" Varchar2(10),
+  "Contact_Prefered_method " Varchar2(5)
+);
+
+CREATE INDEX "primary key" ON  "Contact_info " ("Contact_id  ");
+
+CREATE INDEX "not null" ON  "Contact_info " ("Contact_email ", "Contact_phone_number ");
+
+CREATE INDEX "optional" ON  "Contact_info " ("Contact_secondary_phonenumber", "Contact_Prefered_method ");
+
+CREATE TABLE "Mentee " (
+  "Mentee_id" int,
+  "Student_id  " varchar2(13),
+  " Subject_id " int,
+  "Class_id " int,
+  "Contact_id " int
+);
+
+CREATE INDEX "Primary key " ON  "Mentee " ("Mentee_id");
+
+CREATE INDEX "Foreign key " ON  "Mentee " ("Student_id  ", " Subject_id ", "Class_id ", "Contact_id ");
+
+CREATE TABLE "Subject_session" (
+  "Session_id " int,
+  "Subject_id  " int
+);
+
+CREATE INDEX " Primary key , Foreign key " ON  "Subject_session" ("Session_id ", "Subject_id  ");
+
+CREATE TABLE "Project  " (
+  "Project_for_subject(subject_id)    " int,
+  "Project_give_by (lecture_id)" int,
+  "Project_Date_given" DateTime,
+  "Project_due_date " DateTime,
+  "Project_Type" Varchar2(10)
+);
+
+CREATE INDEX "Primary key , Foreign key " ON  "Project  " ("Project_for_subject(subject_id)    ", "Project_give_by (lecture_id)");
+
+CREATE INDEX "not null" ON  "Project  " ("Project_Date_given", "Project_due_date ", "Project_Type");
+
